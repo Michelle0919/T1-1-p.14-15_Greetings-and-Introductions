@@ -18,6 +18,7 @@
       width: 100%;
       height: 100%;
       margin: 0;
+      padding: 0;
       overflow: hidden;
       font-family: "Trebuchet MS", Arial, sans-serif;
       background: linear-gradient(90deg, #edf8fb 0%, #fffde9 100%);
@@ -47,6 +48,7 @@
       width: min(86vw, 1060px);
       height: 100%;
       margin: 0 auto;
+      padding: 0;
       background: linear-gradient(90deg, #edf9ff, #fffde9);
       border-radius: 20px 20px 0 0;
       border: 2px solid rgba(56, 189, 248, 0.25);
@@ -71,6 +73,9 @@
       font-weight: 900;
       box-shadow: 0 4px 0 rgba(2, 132, 199, 0.18);
       flex: 0 0 auto;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
     }
 
     .title-text {
@@ -80,6 +85,8 @@
       font-size: clamp(2rem, 3.6vw, 4rem);
       white-space: nowrap;
       text-shadow: 0 3px 0 rgba(14, 165, 233, 0.12);
+      margin: 0;
+      padding: 0;
     }
 
     .top-row {
@@ -88,6 +95,8 @@
       gap: 1vw;
       min-height: 0;
       align-items: stretch;
+      margin: 0;
+      padding: 0;
     }
 
     .status-row {
@@ -95,6 +104,8 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 0.9vw;
       min-height: 0;
+      margin: 0;
+      padding: 0;
     }
 
     .status-card {
@@ -107,18 +118,25 @@
       align-items: center;
       line-height: 1;
       box-shadow: 0 4px 0 rgba(15, 23, 42, 0.08);
+      margin: 0;
+      padding: 0;
     }
 
     .status-card .label {
       font-size: clamp(0.78rem, 0.95vw, 1.1rem);
       font-weight: 900;
-      margin-bottom: 0.45vh;
+      margin: 0 0 0.45vh 0;
+      padding: 0;
+      line-height: 1;
     }
 
     .status-card .value {
       font-size: clamp(1.8rem, 2.1vw, 2.8rem);
       font-weight: 900;
       color: #0f172a;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
     }
 
     .card-blue { border: 3px solid #38bdf8; }
@@ -134,6 +152,7 @@
       background: rgba(255,255,255,0.75);
       border-radius: 12px;
       padding: 0.6vh 0.8vw;
+      margin: 0;
     }
 
     .soft-button {
@@ -145,6 +164,9 @@
       font-weight: 900;
       box-shadow: 0 4px 0 rgba(15, 23, 42, 0.18);
       transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
     }
 
     .soft-button:hover {
@@ -177,6 +199,7 @@
       grid-template-columns: 1fr 22vw;
       gap: 1vw;
       padding: 0 2vw;
+      margin: 0;
     }
 
     .question-area {
@@ -184,6 +207,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      margin: 0;
+      padding: 0;
     }
 
     .turn-pill {
@@ -196,9 +221,10 @@
       border-radius: 18px;
       border: 3px solid #7dd3fc;
       box-shadow: 0 5px 0 rgba(2, 132, 199, 0.22);
-      margin-bottom: 1.6vh;
+      margin: 0 0 1.6vh 0;
       min-width: 190px;
       text-align: center;
+      line-height: 1;
     }
 
     .speech-bubble {
@@ -208,10 +234,10 @@
       border: 4px dashed #38bdf8;
       border-radius: 28px;
       position: relative;
-      padding: 3vh 4vw 3vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-rows: 20% 80%;
       box-shadow: 0 8px 0 rgba(14, 165, 233, 0.12);
       overflow: visible;
     }
@@ -233,19 +259,35 @@
       color: #075985;
       font-size: clamp(1.5rem, 1.9vw, 2.6rem);
       font-weight: 900;
-      margin-bottom: 1.4vh;
-      flex: 0 0 auto;
+      margin: 0;
+      padding: 0 0 0 1.5vw;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .prompt-wrap {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: visible;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
     }
 
     .prompt-text {
       color: #07132f;
-      font-size: 150px;
+      font-size: clamp(4rem, 10vw, 180px);
       line-height: 1;
       font-weight: 900;
       white-space: nowrap;
       transform-origin: left center;
       display: inline-block;
       max-width: none;
+      margin: 0;
+      padding: 0;
     }
 
     .side-panel {
@@ -257,6 +299,7 @@
       align-items: start;
       justify-items: center;
       padding: 0.8vh 0.8vw;
+      margin: 0;
     }
 
     .stars {
@@ -269,7 +312,8 @@
       padding: 0.65vh 1.1vw;
       border-radius: 12px;
       box-shadow: 0 4px 0 rgba(234, 179, 8, 0.18);
-      margin-bottom: 1.2vh;
+      margin: 0 0 1.2vh 0;
+      line-height: 1;
     }
 
     .visual-card {
@@ -281,6 +325,8 @@
       justify-content: center;
       overflow: hidden;
       background: rgba(255,255,255,0.45);
+      padding: 0;
+      margin: 0;
     }
 
     .visual-svg {
@@ -290,7 +336,8 @@
 
     .choice-row {
       min-height: 0;
-      padding: 0 1.3vw;
+      padding: 0;
+      margin: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -303,6 +350,8 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 1.6vh 1.3vw;
       align-content: center;
+      padding: 0;
+      margin: 0;
     }
 
     .choice-grid.reveal {
@@ -313,15 +362,17 @@
 
     .choice-card {
       width: 100%;
-      min-height: 88px;
-      height: 10.3vh;
+      height: 100%;
+      min-height: 0;
       background: #fff;
       border: 3px solid #4fc3ff;
       border-radius: 16px;
-      display: flex;
+      display: grid;
+      grid-template-columns: auto 1fr;
       align-items: center;
-      gap: 1vw;
-      padding: 0 1.25vw;
+      gap: 0.8vw;
+      padding: 0;
+      margin: 0;
       box-shadow: 0 4px 0 rgba(79, 195, 255, 0.12);
       transition: transform 0.12s ease, box-shadow 0.12s ease;
       overflow: hidden;
@@ -340,22 +391,38 @@
     .letter {
       flex: 0 0 auto;
       width: clamp(74px, 4.8vw, 94px);
-      height: clamp(48px, 3.8vw, 68px);
-      border-radius: 14px;
+      height: 100%;
+      border-radius: 12px;
       background: #e8f5ff;
-      border: 3px solid #38bdf8;
+      border-right: 3px solid #38bdf8;
+      border-top: 0;
+      border-bottom: 0;
+      border-left: 0;
       color: #075985;
-      font-size: clamp(2rem, 2.4vw, 3rem);
+      font-size: clamp(2rem, 3vw, 4rem);
       font-weight: 900;
       display: flex;
       align-items: center;
       justify-content: center;
       line-height: 1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .choice-text-wrap {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: visible;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
     }
 
     .choice-text {
       color: #07132f;
-      font-size: 76px;
+      font-size: clamp(2.5rem, 5vw, 90px);
       line-height: 1;
       font-weight: 900;
       white-space: nowrap;
@@ -364,33 +431,38 @@
       display: inline-block;
       transform-origin: left center;
       max-width: none;
+      margin: 0;
+      padding: 0;
     }
 
     .reveal-card {
       width: 100%;
       height: 100%;
       min-height: 0;
-      background: linear-gradient(90deg, #cfeeda 0%, #cfeeda 100%);
+      background: linear-gradient(90deg, #c6ebd2 0%, #d5f2dc 100%);
       border: 5px solid #10b981;
       border-radius: 22px;
-      display: flex;
+      display: grid;
+      grid-template-columns: auto 1fr;
       align-items: center;
-      gap: 1.5vw;
-      padding: 0 2vw;
+      gap: 1vw;
+      padding: 0;
+      margin: 0;
       box-shadow: 0 8px 0 rgba(16, 185, 129, 0.16);
       overflow: hidden;
     }
 
     .reveal-card .letter {
-      width: clamp(86px, 5.8vw, 120px);
-      height: clamp(62px, 4.8vw, 84px);
-      font-size: clamp(2.4rem, 2.8vw, 3.6rem);
-      border-width: 4px;
+      width: clamp(92px, 6vw, 130px);
+      height: 100%;
+      font-size: clamp(2.6rem, 4vw, 5.2rem);
       background: #dff1ff;
+      border-right: 5px solid #38bdf8;
+      border-radius: 16px;
     }
 
     .reveal-card .choice-text {
-      font-size: 118px;
+      font-size: clamp(4rem, 8vw, 150px);
       line-height: 1;
       white-space: nowrap;
       overflow: visible;
@@ -398,6 +470,8 @@
       color: #091633;
       display: inline-block;
       transform-origin: left center;
+      margin: 0;
+      padding: 0;
     }
 
     .footer {
@@ -410,6 +484,7 @@
       align-items: center;
       gap: 0.8vw;
       padding: 0.7vh 0.8vw;
+      margin: 0;
       box-shadow: 0 5px 0 rgba(14, 165, 233, 0.12);
     }
 
@@ -418,6 +493,8 @@
       display: grid;
       gap: 0.5vw;
       overflow: hidden;
+      padding: 0;
+      margin: 0;
     }
 
     .team-card {
@@ -431,6 +508,8 @@
       justify-content: center;
       line-height: 1;
       min-width: 0;
+      padding: 0;
+      margin: 0;
     }
 
     .team-card.active {
@@ -443,14 +522,19 @@
       font-size: clamp(0.72rem, 0.85vw, 1rem);
       color: #475569;
       font-weight: 900;
-      margin-bottom: 0.45vh;
+      margin: 0 0 0.45vh 0;
+      padding: 0;
       white-space: nowrap;
+      line-height: 1;
     }
 
     .team-score {
       font-size: clamp(1.8rem, 2.1vw, 2.8rem);
       color: #0284c7;
       font-weight: 900;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
     }
 
     .team-card.active .team-score {
@@ -462,19 +546,24 @@
       align-items: center;
       justify-content: center;
       height: 100%;
+      margin: 0;
+      padding: 0;
     }
 
     .skip-button {
       height: 80%;
-      min-width: clamp(110px, 7vw, 150px);
+      min-width: clamp(120px, 8vw, 170px);
       border-radius: 14px;
       background: #64748b;
       border: 4px solid #334155;
       color: white;
-      font-size: clamp(1.3rem, 1.4vw, 1.8rem);
+      font-size: clamp(1.5rem, 1.8vw, 2.2rem);
       font-weight: 900;
       box-shadow: 0 5px 0 rgba(51, 65, 85, 0.25);
       transition: transform 0.1s ease, box-shadow 0.1s ease;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
     }
 
     .skip-button:active {
@@ -516,14 +605,17 @@
       color: #075985;
       font-weight: 900;
       line-height: 1;
-      margin-bottom: 1vh;
+      margin: 0 0 1vh 0;
+      padding: 0;
     }
 
     .setup-subtitle {
       font-size: clamp(1.4rem, 2.2vw, 2.8rem);
       color: #0f766e;
       font-weight: 900;
-      margin-bottom: 3vh;
+      line-height: 1;
+      margin: 0 0 3vh 0;
+      padding: 0;
     }
 
     .number-input {
@@ -539,6 +631,7 @@
       background: #f8fafc;
       outline: none;
       box-shadow: 0 6px 0 rgba(14, 165, 233, 0.14);
+      line-height: 1;
     }
 
     .rule-row {
@@ -547,6 +640,7 @@
       flex-wrap: wrap;
       gap: 1vw;
       margin: 2.4vh 0;
+      padding: 0;
     }
 
     .rule-pill {
@@ -556,6 +650,8 @@
       font-weight: 900;
       border: 4px solid;
       background: white;
+      line-height: 1;
+      margin: 0;
     }
 
     .big-play {
@@ -569,6 +665,9 @@
       font-size: clamp(1.7rem, 2.4vw, 3.2rem);
       font-weight: 900;
       box-shadow: 0 8px 0 rgba(3, 105, 161, 0.28);
+      line-height: 1;
+      margin: 0;
+      padding: 0;
     }
 
     .break-card {
@@ -581,14 +680,17 @@
       font-weight: 900;
       color: #d97706;
       line-height: 1;
-      margin-bottom: 2vh;
+      margin: 0 0 2vh 0;
+      padding: 0;
     }
 
     .break-message {
       font-size: clamp(1.35rem, 2.2vw, 2.8rem);
       font-weight: 900;
       color: #0f172a;
-      margin-bottom: 2vh;
+      margin: 0 0 2vh 0;
+      padding: 0;
+      line-height: 1.1;
     }
 
     .break-count {
@@ -596,6 +698,8 @@
       font-weight: 900;
       color: #0ea5e9;
       line-height: 1;
+      margin: 0;
+      padding: 0;
     }
 
     .time-danger {
@@ -653,14 +757,6 @@
       .choice-grid {
         grid-template-columns: 1fr;
         gap: 1vh;
-      }
-
-      .choice-card {
-        height: 8vh;
-      }
-
-      .reveal-card {
-        padding: 0 3vw;
       }
 
       .footer {
@@ -721,7 +817,9 @@
 
         <div class="speech-bubble">
           <div class="bubble-label">Listen</div>
-          <div id="promptText" class="prompt-text">What's your name?</div>
+          <div class="prompt-wrap">
+            <div id="promptText" class="prompt-text">What's your name?</div>
+          </div>
         </div>
       </section>
 
@@ -1115,18 +1213,22 @@
       textEl.style.fontSize = maxPx + "px";
       textEl.style.whiteSpace = "nowrap";
       textEl.style.display = "inline-block";
+      textEl.style.lineHeight = "1";
+      textEl.style.margin = "0";
+      textEl.style.padding = "0";
       textEl.style.transformOrigin = "left center";
 
-      const availableWidth = Math.max(40, containerEl.clientWidth);
-      const availableHeight = Math.max(24, containerEl.clientHeight);
+      const availableWidth = Math.max(30, containerEl.clientWidth);
+      const availableHeight = Math.max(20, containerEl.clientHeight);
 
       let low = minPx;
       let high = maxPx;
       let best = minPx;
 
-      for (let i = 0; i < 18; i++) {
+      for (let i = 0; i < 22; i++) {
         const mid = (low + high) / 2;
         textEl.style.fontSize = mid + "px";
+        textEl.style.transform = "scale(1)";
 
         const fitsWidth = textEl.scrollWidth <= availableWidth;
         const fitsHeight = textEl.scrollHeight <= availableHeight;
@@ -1141,37 +1243,25 @@
 
       textEl.style.fontSize = best + "px";
 
-      if (textEl.scrollWidth > availableWidth) {
-        const scale = Math.max(0.35, availableWidth / textEl.scrollWidth);
-        textEl.style.transform = `scale(${scale})`;
+      const widthScale = availableWidth / Math.max(1, textEl.scrollWidth);
+      const heightScale = availableHeight / Math.max(1, textEl.scrollHeight);
+      const finalScale = Math.min(1, widthScale, heightScale);
+
+      if (finalScale < 1) {
+        textEl.style.transform = `scale(${Math.max(0.25, finalScale)})`;
       }
     }
 
     function fitPromptText() {
-      const bubble = promptText.closest(".speech-bubble");
-      if (!bubble) return;
-
-      const label = bubble.querySelector(".bubble-label");
-      const bubbleStyle = getComputedStyle(bubble);
-      const paddingLeft = parseFloat(bubbleStyle.paddingLeft) || 0;
-      const paddingRight = parseFloat(bubbleStyle.paddingRight) || 0;
-      const paddingTop = parseFloat(bubbleStyle.paddingTop) || 0;
-      const paddingBottom = parseFloat(bubbleStyle.paddingBottom) || 0;
-
-      const availableWidth = bubble.clientWidth - paddingLeft - paddingRight;
-      const availableHeight =
-        bubble.clientHeight -
-        paddingTop -
-        paddingBottom -
-        (label ? label.offsetHeight : 0) -
-        20;
+      const wrap = promptText.closest(".prompt-wrap");
+      if (!wrap) return;
 
       const fakeBox = {
-        clientWidth: availableWidth,
-        clientHeight: availableHeight
+        clientWidth: wrap.clientWidth,
+        clientHeight: wrap.clientHeight
       };
 
-      fitOneLineText(promptText, fakeBox, 150, 42);
+      fitOneLineText(promptText, fakeBox, 180, 36);
     }
 
     function fitChoiceTexts() {
@@ -1180,29 +1270,15 @@
       cards.forEach(card => {
         const letter = card.querySelector(".letter");
         const text = card.querySelector(".choice-text");
-        if (!letter || !text) return;
-
-        const cardStyle = getComputedStyle(card);
-        const gap = parseFloat(cardStyle.columnGap || cardStyle.gap) || 16;
-        const paddingLeft = parseFloat(cardStyle.paddingLeft) || 0;
-        const paddingRight = parseFloat(cardStyle.paddingRight) || 0;
-
-        const availableWidth =
-          card.clientWidth -
-          letter.offsetWidth -
-          gap -
-          paddingLeft -
-          paddingRight -
-          8;
-
-        const availableHeight = card.clientHeight - 12;
+        const textWrap = card.querySelector(".choice-text-wrap");
+        if (!letter || !text || !textWrap) return;
 
         const fakeBox = {
-          clientWidth: availableWidth,
-          clientHeight: availableHeight
+          clientWidth: textWrap.clientWidth,
+          clientHeight: textWrap.clientHeight
         };
 
-        fitOneLineText(text, fakeBox, 76, 24);
+        fitOneLineText(text, fakeBox, 92, 22);
       });
     }
 
@@ -1210,37 +1286,24 @@
       const revealCard = document.querySelector(".reveal-card");
       if (!revealCard) return;
 
-      const letter = revealCard.querySelector(".letter");
       const text = revealCard.querySelector(".choice-text");
-      if (!letter || !text) return;
-
-      const cardStyle = getComputedStyle(revealCard);
-      const gap = parseFloat(cardStyle.columnGap || cardStyle.gap) || 24;
-      const paddingLeft = parseFloat(cardStyle.paddingLeft) || 0;
-      const paddingRight = parseFloat(cardStyle.paddingRight) || 0;
-
-      const availableWidth =
-        revealCard.clientWidth -
-        letter.offsetWidth -
-        gap -
-        paddingLeft -
-        paddingRight -
-        10;
-
-      const availableHeight = revealCard.clientHeight - 20;
+      const textWrap = revealCard.querySelector(".choice-text-wrap");
+      if (!text || !textWrap) return;
 
       const fakeBox = {
-        clientWidth: availableWidth,
-        clientHeight: availableHeight
+        clientWidth: textWrap.clientWidth,
+        clientHeight: textWrap.clientHeight
       };
 
-      fitOneLineText(text, fakeBox, 118, 34);
+      fitOneLineText(text, fakeBox, 150, 30);
     }
 
     function fitAllText() {
-      fitPromptText();
-      fitChoiceTexts();
-      fitRevealText();
+      requestAnimationFrame(() => {
+        fitPromptText();
+        fitChoiceTexts();
+        fitRevealText();
+      });
     }
 
     function visualTemplate(type) {
@@ -1391,7 +1454,9 @@
       choicesBox.innerHTML = `
         <div class="reveal-card animate__animated animate__zoomIn">
           <div class="letter">${letter}</div>
-          <div class="choice-text">${answerText}</div>
+          <div class="choice-text-wrap">
+            <div class="choice-text">${answerText}</div>
+          </div>
         </div>
       `;
 
@@ -1423,7 +1488,9 @@
 
         button.innerHTML = `
           <div class="letter">${letter}</div>
-          <div class="choice-text">${choice}</div>
+          <div class="choice-text-wrap">
+            <div class="choice-text">${choice}</div>
+          </div>
         `;
 
         button.addEventListener("click", () => chooseAnswer(choice));
@@ -1646,7 +1713,9 @@
         button.className = "choice-card";
         button.innerHTML = `
           <div class="letter">${letter}</div>
-          <div class="choice-text">${choice}</div>
+          <div class="choice-text-wrap">
+            <div class="choice-text">${choice}</div>
+          </div>
         `;
         choicesBox.appendChild(button);
       });
