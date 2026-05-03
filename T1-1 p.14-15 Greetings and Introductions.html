@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greetings and Introductions</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background: linear-gradient(90deg, #edf8fb 0%, #fffde9 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    .app {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: 11vh 9vh 1fr 28vh 9vh;
+      gap: 0.8vh;
+      padding: 0.6vh 1.4vw 1vh;
+    }
+
+    .title-box {
+      width: min(86vw, 1060px);
+      height: 100%;
+      margin: 0 auto;
+      background: linear-gradient(90deg, #edf9ff, #fffde9);
+      border-radius: 20px 20px 0 0;
+      border: 2px solid rgba(56, 189, 248, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2vw;
+      box-shadow: 0 7px 20px rgba(2, 132, 199, 0.08);
+    }
+
+    .hi-badge {
+      width: clamp(48px, 4vw, 72px);
+      height: clamp(48px, 4vw, 72px);
+      border-radius: 14px;
+      background: #ffe84a;
+      border: 4px solid #0284c7;
+      color: #075985;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(1.5rem, 2vw, 2.5rem);
+      font-weight: 900;
+      box-shadow: 0 4px 0 rgba(2, 132, 199, 0.18);
+      flex: 0 0 auto;
+    }
+
+    .title-text {
+      color: #0c4a6e;
+      font-weight: 900;
+      line-height: 1;
+      font-size: clamp(2rem, 3.6vw, 4rem);
+      white-space: nowrap;
+      text-shadow: 0 3px 0 rgba(14, 165, 233, 0.12);
+    }
+
+    .top-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1vw;
+      min-height: 0;
+      align-items: stretch;
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9vw;
+      min-height: 0;
+    }
+
+    .status-card {
+      height: 100%;
+      background: #fff;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      line-height: 1;
+      box-shadow: 0 4px 0 rgba(15, 23, 42, 0.08);
+    }
+
+    .status-card .label {
+      font-size: clamp(0.78rem, 0.95vw, 1.1rem);
+      font-weight: 900;
+      margin-bottom: 0.45vh;
+    }
+
+    .status-card .value {
+      font-size: clamp(1.8rem, 2.1vw, 2.8rem);
+      font-weight: 900;
+      color: #0f172a;
+    }
+
+    .card-blue { border: 3px solid #38bdf8; }
+    .card-purple { border: 3px solid #a78bfa; }
+    .card-green { border: 3px solid #34d399; }
+    .card-orange { border: 3px solid #fb923c; }
+
+    .control-panel {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.7vw;
+      background: rgba(255,255,255,0.75);
+      border-radius: 12px;
+      padding: 0.6vh 0.8vw;
+    }
+
+    .soft-button {
+      height: 70%;
+      min-width: clamp(74px, 5vw, 110px);
+      border-radius: 10px;
+      color: white;
+      font-size: clamp(0.95rem, 1vw, 1.2rem);
+      font-weight: 900;
+      box-shadow: 0 4px 0 rgba(15, 23, 42, 0.18);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+    }
+
+    .soft-button:hover {
+      filter: brightness(1.06);
+    }
+
+    .soft-button:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.18);
+    }
+
+    .btn-listen {
+      background: #34d399;
+      border: 3px solid #059669;
+    }
+
+    .btn-pause {
+      background: #fbbf24;
+      border: 3px solid #d97706;
+    }
+
+    .btn-restart {
+      background: #fb7185;
+      border: 3px solid #e11d48;
+    }
+
+    .main-row {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr 22vw;
+      gap: 1vw;
+      padding: 0 2vw;
+    }
+
+    .question-area {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .turn-pill {
+      align-self: center;
+      background: #1fa3e8;
+      color: white;
+      font-weight: 900;
+      font-size: clamp(1.5rem, 1.8vw, 2.4rem);
+      padding: 1vh 2.1vw;
+      border-radius: 18px;
+      border: 3px solid #7dd3fc;
+      box-shadow: 0 5px 0 rgba(2, 132, 199, 0.22);
+      margin-bottom: 1.6vh;
+      min-width: 190px;
+      text-align: center;
+    }
+
+    .speech-bubble {
+      width: 100%;
+      min-height: 31vh;
+      background: white;
+      border: 4px dashed #38bdf8;
+      border-radius: 28px;
+      position: relative;
+      padding: 3vh 4vw 3vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 8px 0 rgba(14, 165, 233, 0.12);
+      overflow: visible;
+    }
+
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      left: 8%;
+      bottom: -1.6vh;
+      width: 34px;
+      height: 34px;
+      background: white;
+      border-left: 4px dashed #38bdf8;
+      border-bottom: 4px dashed #38bdf8;
+      transform: rotate(-35deg);
+    }
+
+    .bubble-label {
+      color: #075985;
+      font-size: clamp(1.5rem, 1.9vw, 2.6rem);
+      font-weight: 900;
+      margin-bottom: 1.4vh;
+      flex: 0 0 auto;
+    }
+
+    .prompt-text {
+      color: #07132f;
+      font-size: 150px;
+      line-height: 1;
+      font-weight: 900;
+      white-space: nowrap;
+      transform-origin: left center;
+      display: inline-block;
+      max-width: none;
+    }
+
+    .side-panel {
+      min-height: 0;
+      background: rgba(255,255,255,0.7);
+      border-radius: 0 0 20px 20px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      align-items: start;
+      justify-items: center;
+      padding: 0.8vh 0.8vw;
+    }
+
+    .stars {
+      justify-self: end;
+      background: #fde047;
+      border: 3px solid #eab308;
+      color: #422006;
+      font-size: clamp(1rem, 1.2vw, 1.5rem);
+      font-weight: 900;
+      padding: 0.65vh 1.1vw;
+      border-radius: 12px;
+      box-shadow: 0 4px 0 rgba(234, 179, 8, 0.18);
+      margin-bottom: 1.2vh;
+    }
+
+    .visual-card {
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: rgba(255,255,255,0.45);
+    }
+
+    .visual-svg {
+      width: 90%;
+      height: 90%;
+    }
+
+    .choice-row {
+      min-height: 0;
+      padding: 0 1.3vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .choice-grid {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.6vh 1.3vw;
+      align-content: center;
+    }
+
+    .choice-grid.reveal {
+      grid-template-columns: 1fr;
+      gap: 0;
+      align-content: stretch;
+    }
+
+    .choice-card {
+      width: 100%;
+      min-height: 88px;
+      height: 10.3vh;
+      background: #fff;
+      border: 3px solid #4fc3ff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 1vw;
+      padding: 0 1.25vw;
+      box-shadow: 0 4px 0 rgba(79, 195, 255, 0.12);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      overflow: hidden;
+    }
+
+    .choice-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 0 rgba(79, 195, 255, 0.16);
+    }
+
+    .choice-card:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 rgba(79, 195, 255, 0.16);
+    }
+
+    .letter {
+      flex: 0 0 auto;
+      width: clamp(74px, 4.8vw, 94px);
+      height: clamp(48px, 3.8vw, 68px);
+      border-radius: 14px;
+      background: #e8f5ff;
+      border: 3px solid #38bdf8;
+      color: #075985;
+      font-size: clamp(2rem, 2.4vw, 3rem);
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .choice-text {
+      color: #07132f;
+      font-size: 76px;
+      line-height: 1;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: clip;
+      display: inline-block;
+      transform-origin: left center;
+      max-width: none;
+    }
+
+    .reveal-card {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      background: linear-gradient(90deg, #cfeeda 0%, #cfeeda 100%);
+      border: 5px solid #10b981;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      gap: 1.5vw;
+      padding: 0 2vw;
+      box-shadow: 0 8px 0 rgba(16, 185, 129, 0.16);
+      overflow: hidden;
+    }
+
+    .reveal-card .letter {
+      width: clamp(86px, 5.8vw, 120px);
+      height: clamp(62px, 4.8vw, 84px);
+      font-size: clamp(2.4rem, 2.8vw, 3.6rem);
+      border-width: 4px;
+      background: #dff1ff;
+    }
+
+    .reveal-card .choice-text {
+      font-size: 118px;
+      line-height: 1;
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: clip;
+      color: #091633;
+      display: inline-block;
+      transform-origin: left center;
+    }
+
+    .footer {
+      min-height: 0;
+      background: white;
+      border: 4px solid #0ea5e9;
+      border-radius: 16px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 0.8vw;
+      padding: 0.7vh 0.8vw;
+      box-shadow: 0 5px 0 rgba(14, 165, 233, 0.12);
+    }
+
+    .team-scoreboard {
+      height: 100%;
+      display: grid;
+      gap: 0.5vw;
+      overflow: hidden;
+    }
+
+    .team-card {
+      height: 100%;
+      border: 3px solid #cbd5e1;
+      border-radius: 10px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      min-width: 0;
+    }
+
+    .team-card.active {
+      background: #f5dc43;
+      border-color: #eab308;
+      box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.16);
+    }
+
+    .team-name {
+      font-size: clamp(0.72rem, 0.85vw, 1rem);
+      color: #475569;
+      font-weight: 900;
+      margin-bottom: 0.45vh;
+      white-space: nowrap;
+    }
+
+    .team-score {
+      font-size: clamp(1.8rem, 2.1vw, 2.8rem);
+      color: #0284c7;
+      font-weight: 900;
+    }
+
+    .team-card.active .team-score {
+      color: #e11d48;
+    }
+
+    .skip-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .skip-button {
+      height: 80%;
+      min-width: clamp(110px, 7vw, 150px);
+      border-radius: 14px;
+      background: #64748b;
+      border: 4px solid #334155;
+      color: white;
+      font-size: clamp(1.3rem, 1.4vw, 1.8rem);
+      font-weight: 900;
+      box-shadow: 0 5px 0 rgba(51, 65, 85, 0.25);
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .skip-button:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 rgba(51, 65, 85, 0.25);
+    }
+
+    .setup-screen,
+    .break-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 3vh 3vw;
+      background: rgba(15, 23, 42, 0.42);
+      backdrop-filter: blur(6px);
+    }
+
+    .setup-screen.show,
+    .break-screen.show {
+      display: flex;
+    }
+
+    .setup-card,
+    .break-card {
+      width: min(92vw, 980px);
+      border-radius: 36px;
+      background: linear-gradient(135deg, #ffffff, #ecfeff);
+      border: 6px solid #38bdf8;
+      box-shadow: 0 28px 80px rgba(15, 23, 42, 0.24);
+      padding: 4vh 4vw;
+      text-align: center;
+    }
+
+    .setup-title {
+      font-size: clamp(2.6rem, 4.8vw, 5.8rem);
+      color: #075985;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 1vh;
+    }
+
+    .setup-subtitle {
+      font-size: clamp(1.4rem, 2.2vw, 2.8rem);
+      color: #0f766e;
+      font-weight: 900;
+      margin-bottom: 3vh;
+    }
+
+    .number-input {
+      width: min(260px, 72vw);
+      height: 8vh;
+      min-height: 62px;
+      border-radius: 22px;
+      border: 5px solid #0ea5e9;
+      text-align: center;
+      font-size: clamp(2rem, 3vw, 4rem);
+      font-weight: 900;
+      color: #0f172a;
+      background: #f8fafc;
+      outline: none;
+      box-shadow: 0 6px 0 rgba(14, 165, 233, 0.14);
+    }
+
+    .rule-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1vw;
+      margin: 2.4vh 0;
+    }
+
+    .rule-pill {
+      padding: 1.1vh 1.7vw;
+      border-radius: 999px;
+      font-size: clamp(1.05rem, 1.35vw, 1.85rem);
+      font-weight: 900;
+      border: 4px solid;
+      background: white;
+    }
+
+    .big-play {
+      min-width: min(360px, 72vw);
+      height: 9vh;
+      min-height: 72px;
+      border-radius: 26px;
+      background: #0ea5e9;
+      border: 6px solid #0369a1;
+      color: white;
+      font-size: clamp(1.7rem, 2.4vw, 3.2rem);
+      font-weight: 900;
+      box-shadow: 0 8px 0 rgba(3, 105, 161, 0.28);
+    }
+
+    .break-card {
+      background: linear-gradient(135deg, #fffbeb, #ecfeff);
+      border-color: #facc15;
+    }
+
+    .break-title {
+      font-size: clamp(3.2rem, 6.5vw, 8rem);
+      font-weight: 900;
+      color: #d97706;
+      line-height: 1;
+      margin-bottom: 2vh;
+    }
+
+    .break-message {
+      font-size: clamp(1.35rem, 2.2vw, 2.8rem);
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 2vh;
+    }
+
+    .break-count {
+      font-size: clamp(4.2rem, 8vw, 10rem);
+      font-weight: 900;
+      color: #0ea5e9;
+      line-height: 1;
+    }
+
+    .time-danger {
+      color: #e11d48 !important;
+    }
+
+    @media (max-width: 1100px) {
+      .app {
+        grid-template-rows: 10vh 9vh 1fr 30vh 10vh;
+        padding-left: 1vw;
+        padding-right: 1vw;
+      }
+
+      .main-row {
+        grid-template-columns: 1fr 24vw;
+        padding: 0 0.6vw;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        grid-template-rows: 8vh 12vh 1fr 34vh 12vh;
+        gap: 0.5vh;
+      }
+
+      .title-box {
+        width: 100%;
+      }
+
+      .title-text {
+        font-size: clamp(1.35rem, 5vw, 2.1rem);
+      }
+
+      .top-row {
+        grid-template-columns: 1fr;
+      }
+
+      .control-panel {
+        justify-content: center;
+      }
+
+      .main-row {
+        grid-template-columns: 1fr;
+        padding: 0;
+      }
+
+      .side-panel {
+        display: none;
+      }
+
+      .speech-bubble {
+        min-height: 25vh;
+      }
+
+      .choice-grid {
+        grid-template-columns: 1fr;
+        gap: 1vh;
+      }
+
+      .choice-card {
+        height: 8vh;
+      }
+
+      .reveal-card {
+        padding: 0 3vw;
+      }
+
+      .footer {
+        grid-template-columns: 1fr;
+      }
+
+      .skip-wrap {
+        justify-content: flex-end;
+      }
+
+      .skip-button {
+        width: 32vw;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header class="title-box">
+      <div class="hi-badge">Hi</div>
+      <h1 class="title-text">Greetings and Introductions</h1>
+    </header>
+
+    <section class="top-row">
+      <div class="status-row">
+        <div class="status-card card-blue">
+          <div class="label text-sky-600">Level</div>
+          <div id="levelBox" class="value">1</div>
+        </div>
+
+        <div class="status-card card-purple">
+          <div class="label text-purple-600">Round</div>
+          <div id="roundBox" class="value">1</div>
+        </div>
+
+        <div class="status-card card-green">
+          <div class="label text-emerald-600">Score</div>
+          <div id="scoreBox" class="value">0</div>
+        </div>
+
+        <div class="status-card card-orange">
+          <div class="label text-orange-600">Time</div>
+          <div id="timeBox" class="value">20</div>
+        </div>
+      </div>
+
+      <div class="control-panel">
+        <button id="listenBtn" class="soft-button btn-listen">Listen</button>
+        <button id="pauseBtn" class="soft-button btn-pause">Pause</button>
+        <button id="restartBtn" class="soft-button btn-restart">Restart</button>
+      </div>
+    </section>
+
+    <main class="main-row">
+      <section class="question-area">
+        <div id="turnLabel" class="turn-pill">Team A Turn</div>
+
+        <div class="speech-bubble">
+          <div class="bubble-label">Listen</div>
+          <div id="promptText" class="prompt-text">What's your name?</div>
+        </div>
+      </section>
+
+      <aside class="side-panel">
+        <div id="starsBox" class="stars">0 Stars</div>
+        <div id="visualCard" class="visual-card"></div>
+      </aside>
+    </main>
+
+    <section class="choice-row">
+      <div id="choices" class="choice-grid"></div>
+    </section>
+
+    <footer class="footer">
+      <div id="teamScoreboard" class="team-scoreboard"></div>
+
+      <div class="skip-wrap">
+        <button id="skipBtn" class="skip-button">Skip</button>
+      </div>
+    </footer>
+  </div>
+
+  <section id="setupScreen" class="setup-screen show">
+    <div class="setup-card animate__animated animate__zoomIn">
+      <div class="setup-title">Greetings and Introductions</div>
+      <div class="setup-subtitle">Clap, Listen, Pick, Score!</div>
+
+      <label for="teamCountInput" class="block text-slate-700 font-black text-[clamp(1.1rem,1.7vw,2.3rem)] mb-3">
+        Teams
+      </label>
+
+      <input
+        id="teamCountInput"
+        class="number-input"
+        type="number"
+        min="1"
+        max="26"
+        value="5"
+      />
+
+      <div class="rule-row">
+        <div class="rule-pill border-emerald-400 text-emerald-800">Right: +5</div>
+        <div class="rule-pill border-rose-400 text-rose-800">Oops or Time: +1</div>
+        <div class="rule-pill border-yellow-400 text-yellow-800">Fast Round: +10</div>
+      </div>
+
+      <button id="setupPlayBtn" class="big-play">Play</button>
+    </div>
+  </section>
+
+  <section id="breakScreen" class="break-screen">
+    <div class="break-card animate__animated animate__bounceIn">
+      <div class="break-title">Break Time</div>
+      <div class="break-message">All teams played. Get ready for the next round!</div>
+      <div id="breakCount" class="break-count">3</div>
+    </div>
+  </section>
+
+  <script>
+    const questions = [
+      {
+        prompt: "What's your name?",
+        answer: "My name is Angelica.",
+        choices: [
+          "I'm from Venezuela.",
+          "Nice to meet you.",
+          "I'm your teacher.",
+          "My name is Angelica."
+        ],
+        visual: "meet"
+      },
+      {
+        prompt: "Hi. My name's Susie. What's yours?",
+        answer: "Marcos.",
+        choices: [
+          "Marcos.",
+          "Good morning.",
+          "I'm your teacher.",
+          "Nice to meet you."
+        ],
+        visual: "name"
+      },
+      {
+        prompt: "Nice to meet you, Angelica.",
+        answer: "Nice to meet you.",
+        choices: [
+          "Where are you from?",
+          "Nice to meet you.",
+          "My name is John.",
+          "I'm from Venezuela."
+        ],
+        visual: "shake"
+      },
+      {
+        prompt: "Hello, Marcos. I'm your teacher, Ms. Boone.",
+        answer: "Hello, Ms. Boone.",
+        choices: [
+          "Hello, Ms. Boone.",
+          "What's your name?",
+          "I'm from school.",
+          "See you later."
+        ],
+        visual: "teacher"
+      },
+      {
+        prompt: "Where are you from?",
+        answer: "I'm from Venezuela.",
+        choices: [
+          "I'm from Venezuela.",
+          "My name is Susie.",
+          "Nice to meet you.",
+          "Hi, I'm John."
+        ],
+        visual: "map"
+      },
+      {
+        prompt: "Hi, I'm John.",
+        answer: "Hi.",
+        choices: [
+          "Goodbye.",
+          "Hi.",
+          "I'm from Venezuela.",
+          "What's yours?"
+        ],
+        visual: "wave"
+      },
+      {
+        prompt: "Good morning. What's your name?",
+        answer: "My name is Ben.",
+        choices: [
+          "Good night.",
+          "I'm from lunch.",
+          "My name is Ben.",
+          "See you later."
+        ],
+        visual: "sun"
+      },
+      {
+        prompt: "This is my friend, Emma.",
+        answer: "Nice to meet you, Emma.",
+        choices: [
+          "Nice to meet you, Emma.",
+          "Where is your pencil?",
+          "I'm from class.",
+          "What color is it?"
+        ],
+        visual: "friend"
+      },
+      {
+        prompt: "Hi. I'm your new classmate.",
+        answer: "Welcome to our class.",
+        choices: [
+          "Welcome to our class.",
+          "Open your book.",
+          "I like pizza.",
+          "The answer is blue."
+        ],
+        visual: "class"
+      },
+      {
+        prompt: "What's your teacher's name?",
+        answer: "Her name is Ms. Boone.",
+        choices: [
+          "Her name is Ms. Boone.",
+          "I'm Marcos.",
+          "Good afternoon.",
+          "I'm from Venezuela."
+        ],
+        visual: "teacherName"
+      },
+      {
+        prompt: "Are you Susie?",
+        answer: "Yes, I am.",
+        choices: [
+          "Yes, I am.",
+          "I'm from John.",
+          "Nice bus driver.",
+          "Where are you?"
+        ],
+        visual: "yes"
+      },
+      {
+        prompt: "Is he Marcos?",
+        answer: "Yes, he is.",
+        choices: [
+          "Yes, he is.",
+          "Yes, she is.",
+          "Goodbye, Venezuela.",
+          "No, I am."
+        ],
+        visual: "boy"
+      }
+    ];
+
+    const levelBox = document.getElementById("levelBox");
+    const roundBox = document.getElementById("roundBox");
+    const scoreBox = document.getElementById("scoreBox");
+    const timeBox = document.getElementById("timeBox");
+    const turnLabel = document.getElementById("turnLabel");
+    const promptText = document.getElementById("promptText");
+    const starsBox = document.getElementById("starsBox");
+    const choicesBox = document.getElementById("choices");
+    const teamScoreboard = document.getElementById("teamScoreboard");
+    const visualCard = document.getElementById("visualCard");
+
+    const listenBtn = document.getElementById("listenBtn");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const restartBtn = document.getElementById("restartBtn");
+    const skipBtn = document.getElementById("skipBtn");
+
+    const setupScreen = document.getElementById("setupScreen");
+    const setupPlayBtn = document.getElementById("setupPlayBtn");
+    const teamCountInput = document.getElementById("teamCountInput");
+
+    const breakScreen = document.getElementById("breakScreen");
+    const breakCount = document.getElementById("breakCount");
+
+    let teams = [];
+    let currentTeamIndex = 0;
+    let round = 1;
+    let questionIndex = 0;
+    let timeLeft = 20;
+    let timer = null;
+    let started = false;
+    let paused = false;
+    let locked = false;
+    let stars = 0;
+    let voices = [];
+    let currentRenderedChoices = [];
+
+    function loadVoices() {
+      if ("speechSynthesis" in window) {
+        voices = speechSynthesis.getVoices();
+      }
+    }
+
+    if ("speechSynthesis" in window) {
+      loadVoices();
+      speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function getVoice() {
+      if (!voices.length) return null;
+
+      return (
+        voices.find(v => v.lang === "en-US" && /Google US English|Microsoft Jenny|Samantha|Alex|Natural/i.test(v.name)) ||
+        voices.find(v => v.lang === "en-US") ||
+        voices.find(v => /^en/i.test(v.lang)) ||
+        null
+      );
+    }
+
+    function speak(text, onEnd) {
+      if (!("speechSynthesis" in window)) {
+        if (typeof onEnd === "function") onEnd();
+        return;
+      }
+
+      speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      utterance.rate = 0.82;
+      utterance.pitch = 1.02;
+      utterance.volume = 1;
+
+      const voice = getVoice();
+      if (voice) utterance.voice = voice;
+
+      utterance.onend = () => {
+        if (typeof onEnd === "function") onEnd();
+      };
+
+      utterance.onerror = () => {
+        if (typeof onEnd === "function") onEnd();
+      };
+
+      speechSynthesis.speak(utterance);
+    }
+
+    function getLevel() {
+      if (round <= 2) return 1;
+      if (round <= 4) return 2;
+      if (round <= 6) return 3;
+      return 4;
+    }
+
+    function getTimeByLevel() {
+      const level = getLevel();
+      if (level === 1) return 20;
+      if (level === 2) return 18;
+      if (level === 3) return 16;
+      return 12;
+    }
+
+    function isFastRound() {
+      return round >= 7;
+    }
+
+    function getCurrentQuestion() {
+      return questions[questionIndex % questions.length];
+    }
+
+    function shuffle(list) {
+      const arr = [...list];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function clampTeamCount() {
+      let value = parseInt(teamCountInput.value, 10);
+      if (Number.isNaN(value)) value = 5;
+      value = Math.max(1, Math.min(26, value));
+      teamCountInput.value = value;
+      return value;
+    }
+
+    function makeTeams(count) {
+      teams = [];
+      for (let i = 0; i < count; i++) {
+        teams.push({
+          name: `Team ${String.fromCharCode(65 + i)}`,
+          score: 0
+        });
+      }
+    }
+
+    function renderScoreboard() {
+      const count = teams.length || 5;
+      teamScoreboard.style.gridTemplateColumns = `repeat(${count}, minmax(0, 1fr))`;
+      teamScoreboard.innerHTML = "";
+
+      teams.forEach((team, index) => {
+        const card = document.createElement("div");
+        card.className = `team-card ${index === currentTeamIndex && started ? "active" : ""}`;
+        card.innerHTML = `
+          <div class="team-name">${team.name}</div>
+          <div class="team-score">${team.score}</div>
+        `;
+        teamScoreboard.appendChild(card);
+      });
+    }
+
+    function updateUI() {
+      const level = getLevel();
+      const team = teams[currentTeamIndex] || { name: "Team A", score: 0 };
+
+      levelBox.textContent = level;
+      roundBox.textContent = round;
+      scoreBox.textContent = team.score;
+      timeBox.textContent = timeLeft;
+      turnLabel.textContent = `${team.name} Turn`;
+      starsBox.textContent = isFastRound() ? "Fast Round" : `${stars} Stars`;
+
+      if (timeLeft <= 5 && started && !locked) {
+        timeBox.classList.add("time-danger", "animate__animated", "animate__heartBeat");
+      } else {
+        timeBox.classList.remove("time-danger", "animate__animated", "animate__heartBeat");
+      }
+
+      renderScoreboard();
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+
+      timer = setInterval(() => {
+        if (!started || paused || locked) return;
+
+        timeLeft--;
+        updateUI();
+
+        if (timeLeft <= 0) {
+          handleTimeUp();
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function fitOneLineText(textEl, containerEl, maxPx, minPx) {
+      if (!textEl || !containerEl) return;
+
+      textEl.style.transform = "scale(1)";
+      textEl.style.fontSize = maxPx + "px";
+      textEl.style.whiteSpace = "nowrap";
+      textEl.style.display = "inline-block";
+      textEl.style.transformOrigin = "left center";
+
+      const availableWidth = Math.max(40, containerEl.clientWidth);
+      const availableHeight = Math.max(24, containerEl.clientHeight);
+
+      let low = minPx;
+      let high = maxPx;
+      let best = minPx;
+
+      for (let i = 0; i < 18; i++) {
+        const mid = (low + high) / 2;
+        textEl.style.fontSize = mid + "px";
+
+        const fitsWidth = textEl.scrollWidth <= availableWidth;
+        const fitsHeight = textEl.scrollHeight <= availableHeight;
+
+        if (fitsWidth && fitsHeight) {
+          best = mid;
+          low = mid;
+        } else {
+          high = mid;
+        }
+      }
+
+      textEl.style.fontSize = best + "px";
+
+      if (textEl.scrollWidth > availableWidth) {
+        const scale = Math.max(0.35, availableWidth / textEl.scrollWidth);
+        textEl.style.transform = `scale(${scale})`;
+      }
+    }
+
+    function fitPromptText() {
+      const bubble = promptText.closest(".speech-bubble");
+      if (!bubble) return;
+
+      const label = bubble.querySelector(".bubble-label");
+      const bubbleStyle = getComputedStyle(bubble);
+      const paddingLeft = parseFloat(bubbleStyle.paddingLeft) || 0;
+      const paddingRight = parseFloat(bubbleStyle.paddingRight) || 0;
+      const paddingTop = parseFloat(bubbleStyle.paddingTop) || 0;
+      const paddingBottom = parseFloat(bubbleStyle.paddingBottom) || 0;
+
+      const availableWidth = bubble.clientWidth - paddingLeft - paddingRight;
+      const availableHeight =
+        bubble.clientHeight -
+        paddingTop -
+        paddingBottom -
+        (label ? label.offsetHeight : 0) -
+        20;
+
+      const fakeBox = {
+        clientWidth: availableWidth,
+        clientHeight: availableHeight
+      };
+
+      fitOneLineText(promptText, fakeBox, 150, 42);
+    }
+
+    function fitChoiceTexts() {
+      const cards = document.querySelectorAll(".choice-card:not(.reveal-card)");
+
+      cards.forEach(card => {
+        const letter = card.querySelector(".letter");
+        const text = card.querySelector(".choice-text");
+        if (!letter || !text) return;
+
+        const cardStyle = getComputedStyle(card);
+        const gap = parseFloat(cardStyle.columnGap || cardStyle.gap) || 16;
+        const paddingLeft = parseFloat(cardStyle.paddingLeft) || 0;
+        const paddingRight = parseFloat(cardStyle.paddingRight) || 0;
+
+        const availableWidth =
+          card.clientWidth -
+          letter.offsetWidth -
+          gap -
+          paddingLeft -
+          paddingRight -
+          8;
+
+        const availableHeight = card.clientHeight - 12;
+
+        const fakeBox = {
+          clientWidth: availableWidth,
+          clientHeight: availableHeight
+        };
+
+        fitOneLineText(text, fakeBox, 76, 24);
+      });
+    }
+
+    function fitRevealText() {
+      const revealCard = document.querySelector(".reveal-card");
+      if (!revealCard) return;
+
+      const letter = revealCard.querySelector(".letter");
+      const text = revealCard.querySelector(".choice-text");
+      if (!letter || !text) return;
+
+      const cardStyle = getComputedStyle(revealCard);
+      const gap = parseFloat(cardStyle.columnGap || cardStyle.gap) || 24;
+      const paddingLeft = parseFloat(cardStyle.paddingLeft) || 0;
+      const paddingRight = parseFloat(cardStyle.paddingRight) || 0;
+
+      const availableWidth =
+        revealCard.clientWidth -
+        letter.offsetWidth -
+        gap -
+        paddingLeft -
+        paddingRight -
+        10;
+
+      const availableHeight = revealCard.clientHeight - 20;
+
+      const fakeBox = {
+        clientWidth: availableWidth,
+        clientHeight: availableHeight
+      };
+
+      fitOneLineText(text, fakeBox, 118, 34);
+    }
+
+    function fitAllText() {
+      fitPromptText();
+      fitChoiceTexts();
+      fitRevealText();
+    }
+
+    function visualTemplate(type) {
+      const commonPeople = `
+        <svg class="visual-svg animate__animated animate__fadeInRight" viewBox="0 0 280 260">
+          <g>
+            <path d="M48 43 Q78 12 112 45 Q88 35 57 52 Z" fill="#facc15"/>
+            <circle cx="78" cy="70" r="38" fill="#ffd08a" stroke="#92400e" stroke-width="3"/>
+            <circle cx="66" cy="65" r="4" fill="#111827"/>
+            <circle cx="90" cy="65" r="4" fill="#111827"/>
+            <path d="M65 84 Q78 98 92 84" fill="none" stroke="#7c2d12" stroke-width="5" stroke-linecap="round"/>
+            <path d="M48 111 L108 111 L124 205 L32 205 Z" fill="#fde047" stroke="#ca8a04" stroke-width="3"/>
+            <path d="M45 128 Q22 142 29 168" fill="none" stroke="#ffd08a" stroke-width="12" stroke-linecap="round"/>
+            <path d="M109 128 Q132 142 126 168" fill="none" stroke="#ffd08a" stroke-width="12" stroke-linecap="round"/>
+            <path d="M56 204 L50 238" stroke="#c08457" stroke-width="13" stroke-linecap="round"/>
+            <path d="M96 204 L108 238" stroke="#c08457" stroke-width="13" stroke-linecap="round"/>
+            <ellipse cx="47" cy="242" rx="17" ry="7" fill="#92400e"/>
+            <ellipse cx="112" cy="242" rx="17" ry="7" fill="#92400e"/>
+          </g>
+          <g>
+            <circle cx="198" cy="72" r="38" fill="#b87945" stroke="#78350f" stroke-width="3"/>
+            <path d="M164 52 Q198 20 233 53 Q218 36 198 35 Q178 35 164 52" fill="#3f2d16"/>
+            <circle cx="186" cy="68" r="4" fill="#111827"/>
+            <circle cx="210" cy="68" r="4" fill="#111827"/>
+            <path d="M185 86 Q198 98 212 86" fill="none" stroke="#4a1d0b" stroke-width="5" stroke-linecap="round"/>
+            <rect x="166" y="112" width="65" height="68" rx="18" fill="#fb923c" stroke="#c2410c" stroke-width="3"/>
+            <path d="M165 129 Q143 144 150 170" fill="none" stroke="#b87945" stroke-width="12" stroke-linecap="round"/>
+            <path d="M230 129 Q252 144 245 170" fill="none" stroke="#b87945" stroke-width="12" stroke-linecap="round"/>
+            <rect x="169" y="179" width="25" height="44" rx="8" fill="#334155"/>
+            <rect x="202" y="179" width="25" height="44" rx="8" fill="#334155"/>
+            <path d="M181 222 L173 243" stroke="#b87945" stroke-width="13" stroke-linecap="round"/>
+            <path d="M214 222 L228 243" stroke="#b87945" stroke-width="13" stroke-linecap="round"/>
+            <ellipse cx="170" cy="247" rx="17" ry="7" fill="#92400e"/>
+            <ellipse cx="232" cy="247" rx="17" ry="7" fill="#92400e"/>
+          </g>
+        </svg>
+      `;
+
+      const map = `
+        <svg class="visual-svg animate__animated animate__fadeInRight" viewBox="0 0 280 260">
+          <rect x="25" y="45" width="230" height="160" rx="24" fill="#dbeafe" stroke="#38bdf8" stroke-width="6"/>
+          <path d="M52 85 C90 50, 125 88, 101 119 C79 148, 50 126, 52 85Z" fill="#34d399"/>
+          <path d="M147 70 C190 48, 224 83, 213 121 C202 160, 158 154, 146 118 C137 95, 125 80, 147 70Z" fill="#22c55e"/>
+          <path d="M108 145 C135 128, 170 142, 176 172 C180 197, 125 203, 105 181 C91 166, 91 153, 108 145Z" fill="#84cc16"/>
+          <circle cx="196" cy="112" r="12" fill="#ef4444"/>
+          <text x="139" y="234" text-anchor="middle" font-size="28" font-weight="900" fill="#075985">From?</text>
+        </svg>
+      `;
+
+      const teacher = `
+        <svg class="visual-svg animate__animated animate__fadeInRight" viewBox="0 0 280 260">
+          <rect x="35" y="40" width="210" height="125" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="7"/>
+          <text x="140" y="105" text-anchor="middle" font-size="30" font-weight="900" fill="#166534">Hello!</text>
+          <rect x="60" y="177" width="160" height="20" rx="8" fill="#92400e"/>
+          <circle cx="140" cy="198" r="35" fill="#ffd08a" stroke="#92400e" stroke-width="3"/>
+          <path d="M108 183 Q140 145 173 183 Q140 165 108 183" fill="#7c2d12"/>
+          <circle cx="128" cy="196" r="4" fill="#111827"/>
+          <circle cx="152" cy="196" r="4" fill="#111827"/>
+          <path d="M128 213 Q140 223 153 213" fill="none" stroke="#7c2d12" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      `;
+
+      const sun = `
+        <svg class="visual-svg animate__animated animate__fadeInRight" viewBox="0 0 280 260">
+          <circle cx="140" cy="95" r="48" fill="#fde047" stroke="#eab308" stroke-width="7"/>
+          <g stroke="#facc15" stroke-width="10" stroke-linecap="round">
+            <line x1="140" y1="18" x2="140" y2="0"/>
+            <line x1="140" y1="190" x2="140" y2="172"/>
+            <line x1="62" y1="95" x2="38" y2="95"/>
+            <line x1="242" y1="95" x2="218" y2="95"/>
+            <line x1="85" y1="40" x2="68" y2="23"/>
+            <line x1="195" y1="150" x2="212" y2="167"/>
+            <line x1="195" y1="40" x2="212" y2="23"/>
+            <line x1="85" y1="150" x2="68" y2="167"/>
+          </g>
+          <text x="140" y="230" text-anchor="middle" font-size="28" font-weight="900" fill="#075985">Good morning</text>
+        </svg>
+      `;
+
+      const yes = `
+        <svg class="visual-svg animate__animated animate__fadeInRight" viewBox="0 0 280 260">
+          <circle cx="140" cy="125" r="90" fill="#dcfce7" stroke="#22c55e" stroke-width="8"/>
+          <path d="M86 128 L122 164 L200 83" fill="none" stroke="#16a34a" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="140" y="232" text-anchor="middle" font-size="34" font-weight="900" fill="#166534">Yes!</text>
+        </svg>
+      `;
+
+      const classRoom = `
+        <svg class="visual-svg animate__animated animate__fadeInRight" viewBox="0 0 280 260">
+          <rect x="35" y="40" width="210" height="145" rx="18" fill="#e0f2fe" stroke="#0284c7" stroke-width="7"/>
+          <rect x="65" y="78" width="55" height="40" rx="10" fill="#fff" stroke="#38bdf8" stroke-width="4"/>
+          <rect x="160" y="78" width="55" height="40" rx="10" fill="#fff" stroke="#38bdf8" stroke-width="4"/>
+          <rect x="65" y="138" width="55" height="40" rx="10" fill="#fff" stroke="#38bdf8" stroke-width="4"/>
+          <rect x="160" y="138" width="55" height="40" rx="10" fill="#fff" stroke="#38bdf8" stroke-width="4"/>
+          <text x="140" y="228" text-anchor="middle" font-size="28" font-weight="900" fill="#075985">Class</text>
+        </svg>
+      `;
+
+      const nameTag = `
+        <svg class="visual-svg animate__animated animate__fadeInRight" viewBox="0 0 280 260">
+          <rect x="38" y="70" width="204" height="116" rx="28" fill="#fff7ed" stroke="#fb923c" stroke-width="8"/>
+          <rect x="88" y="45" width="104" height="42" rx="18" fill="#38bdf8" stroke="#0284c7" stroke-width="5"/>
+          <text x="140" y="75" text-anchor="middle" font-size="24" font-weight="900" fill="#fff">Name</text>
+          <text x="140" y="138" text-anchor="middle" font-size="40" font-weight="900" fill="#0f172a">Hello</text>
+          <text x="140" y="230" text-anchor="middle" font-size="28" font-weight="900" fill="#c2410c">What's yours?</text>
+        </svg>
+      `;
+
+      const boy = `
+        <svg class="visual-svg animate__animated animate__fadeInRight" viewBox="0 0 280 260">
+          <circle cx="140" cy="72" r="38" fill="#b87945" stroke="#78350f" stroke-width="3"/>
+          <path d="M106 52 Q140 20 175 53 Q160 36 140 35 Q120 35 106 52" fill="#3f2d16"/>
+          <circle cx="128" cy="68" r="4" fill="#111827"/>
+          <circle cx="152" cy="68" r="4" fill="#111827"/>
+          <path d="M127 86 Q140 98 154 86" fill="none" stroke="#4a1d0b" stroke-width="5" stroke-linecap="round"/>
+          <rect x="108" y="112" width="65" height="72" rx="18" fill="#fb923c" stroke="#c2410c" stroke-width="3"/>
+          <path d="M107 129 Q85 144 92 170" fill="none" stroke="#b87945" stroke-width="12" stroke-linecap="round"/>
+          <path d="M172 129 Q194 144 187 170" fill="none" stroke="#b87945" stroke-width="12" stroke-linecap="round"/>
+          <rect x="111" y="182" width="25" height="42" rx="8" fill="#334155"/>
+          <rect x="144" y="182" width="25" height="42" rx="8" fill="#334155"/>
+          <ellipse cx="110" cy="244" rx="17" ry="7" fill="#92400e"/>
+          <ellipse cx="171" cy="244" rx="17" ry="7" fill="#92400e"/>
+        </svg>
+      `;
+
+      if (type === "map") return map;
+      if (type === "teacher" || type === "teacherName") return teacher;
+      if (type === "sun") return sun;
+      if (type === "yes") return yes;
+      if (type === "class") return classRoom;
+      if (type === "name") return nameTag;
+      if (type === "boy") return boy;
+      return commonPeople;
+    }
+
+    function renderVisual(type) {
+      visualCard.innerHTML = visualTemplate(type);
+    }
+
+    function getCorrectLetter() {
+      const q = getCurrentQuestion();
+      const found = currentRenderedChoices.find(item => item.text === q.answer);
+      return found ? found.letter : "A";
+    }
+
+    function showCorrectOnly(letter, answerText) {
+      choicesBox.classList.add("reveal");
+      choicesBox.innerHTML = `
+        <div class="reveal-card animate__animated animate__zoomIn">
+          <div class="letter">${letter}</div>
+          <div class="choice-text">${answerText}</div>
+        </div>
+      `;
+
+      setTimeout(fitRevealText, 30);
+    }
+
+    function renderQuestion(autoSpeak = true) {
+      const q = getCurrentQuestion();
+
+      locked = false;
+      paused = false;
+      timeLeft = getTimeByLevel();
+      pauseBtn.textContent = "Pause";
+      currentRenderedChoices = [];
+
+      choicesBox.classList.remove("reveal");
+      choicesBox.innerHTML = "";
+      promptText.textContent = q.prompt;
+
+      const mixed = shuffle(q.choices);
+
+      mixed.forEach((choice, index) => {
+        const letter = String.fromCharCode(65 + index);
+        currentRenderedChoices.push({ letter, text: choice });
+
+        const button = document.createElement("button");
+        button.className = "choice-card animate__animated animate__fadeInUp";
+        button.style.animationDelay = `${index * 0.05}s`;
+
+        button.innerHTML = `
+          <div class="letter">${letter}</div>
+          <div class="choice-text">${choice}</div>
+        `;
+
+        button.addEventListener("click", () => chooseAnswer(choice));
+        choicesBox.appendChild(button);
+      });
+
+      renderVisual(q.visual);
+      updateUI();
+
+      setTimeout(fitAllText, 30);
+      startTimer();
+
+      if (autoSpeak) {
+        speak(q.prompt);
+      }
+    }
+
+    function moveNextAfterAnswer() {
+      setTimeout(nextTurn, 500);
+    }
+
+    function chooseAnswer(choice) {
+      if (!started || paused || locked) return;
+
+      locked = true;
+      stopTimer();
+
+      const q = getCurrentQuestion();
+      const isCorrect = choice === q.answer;
+      const correctLetter = getCorrectLetter();
+
+      showCorrectOnly(correctLetter, q.answer);
+
+      if (isCorrect) {
+        teams[currentTeamIndex].score += isFastRound() ? 10 : 5;
+        stars++;
+        updateUI();
+
+        speak(choice, moveNextAfterAnswer);
+      } else {
+        teams[currentTeamIndex].score += 1;
+        stars = 0;
+        updateUI();
+
+        speak(q.answer, moveNextAfterAnswer);
+      }
+    }
+
+    function handleTimeUp() {
+      if (locked) return;
+
+      locked = true;
+      stopTimer();
+
+      const q = getCurrentQuestion();
+      const correctLetter = getCorrectLetter();
+
+      teams[currentTeamIndex].score += 1;
+      stars = 0;
+
+      showCorrectOnly(correctLetter, q.answer);
+      updateUI();
+
+      speak(q.answer, moveNextAfterAnswer);
+    }
+
+    function skipQuestion() {
+      if (!started || paused || locked) return;
+
+      locked = true;
+      stopTimer();
+
+      const q = getCurrentQuestion();
+      const correctLetter = getCorrectLetter();
+
+      teams[currentTeamIndex].score += 1;
+      stars = 0;
+
+      showCorrectOnly(correctLetter, q.answer);
+      updateUI();
+
+      speak(q.answer, moveNextAfterAnswer);
+    }
+
+    function nextTurn() {
+      if (!started) return;
+
+      currentTeamIndex++;
+      questionIndex++;
+
+      if (currentTeamIndex >= teams.length) {
+        currentTeamIndex = 0;
+        round++;
+        showBreakTime();
+        return;
+      }
+
+      renderQuestion(true);
+    }
+
+    function showBreakTime() {
+      stopTimer();
+
+      if ("speechSynthesis" in window) {
+        speechSynthesis.cancel();
+      }
+
+      breakScreen.classList.add("show");
+      let count = 3;
+      breakCount.textContent = count;
+
+      speak("Break Time. All teams played. Get ready for the next round!");
+
+      const breakTimer = setInterval(() => {
+        count--;
+        breakCount.textContent = count;
+
+        breakCount.classList.remove("animate__animated", "animate__heartBeat");
+        void breakCount.offsetWidth;
+        breakCount.classList.add("animate__animated", "animate__heartBeat");
+
+        if (count <= 0) {
+          clearInterval(breakTimer);
+          breakScreen.classList.remove("show");
+          renderQuestion(true);
+        }
+      }, 1000);
+    }
+
+    function startGameFromSetup() {
+      const count = clampTeamCount();
+      makeTeams(count);
+
+      currentTeamIndex = 0;
+      questionIndex = 0;
+      round = 1;
+      stars = 0;
+      started = true;
+      paused = false;
+      locked = false;
+
+      setupScreen.classList.remove("show");
+
+      if ("speechSynthesis" in window) {
+        speechSynthesis.cancel();
+      }
+
+      stopTimer();
+      renderScoreboard();
+      renderQuestion(true);
+    }
+
+    function restartGame() {
+      if ("speechSynthesis" in window) {
+        speechSynthesis.cancel();
+      }
+
+      stopTimer();
+
+      started = false;
+      paused = false;
+      locked = false;
+      stars = 0;
+      currentTeamIndex = 0;
+      questionIndex = 0;
+      round = 1;
+
+      setupScreen.classList.add("show");
+      breakScreen.classList.remove("show");
+
+      initPreview(true);
+    }
+
+    function listenAgain() {
+      if (!started || paused || locked) return;
+      speak(getCurrentQuestion().prompt);
+    }
+
+    function togglePause() {
+      if (!started || locked) return;
+
+      paused = !paused;
+
+      if (paused) {
+        if ("speechSynthesis" in window) {
+          speechSynthesis.cancel();
+        }
+        pauseBtn.textContent = "Resume";
+      } else {
+        pauseBtn.textContent = "Pause";
+        speak(getCurrentQuestion().prompt);
+      }
+    }
+
+    function initPreview(showOverlay = true) {
+      makeTeams(5);
+      currentTeamIndex = 0;
+      round = 1;
+      questionIndex = 0;
+      timeLeft = 20;
+      stars = 0;
+      started = false;
+      paused = false;
+      locked = false;
+
+      promptText.textContent = questions[0].prompt;
+      renderVisual(questions[0].visual);
+
+      currentRenderedChoices = [];
+      choicesBox.classList.remove("reveal");
+      choicesBox.innerHTML = "";
+
+      const mixed = shuffle(questions[0].choices);
+
+      mixed.forEach((choice, index) => {
+        const letter = String.fromCharCode(65 + index);
+        currentRenderedChoices.push({ letter, text: choice });
+
+        const button = document.createElement("button");
+        button.className = "choice-card";
+        button.innerHTML = `
+          <div class="letter">${letter}</div>
+          <div class="choice-text">${choice}</div>
+        `;
+        choicesBox.appendChild(button);
+      });
+
+      updateUI();
+      setTimeout(fitAllText, 30);
+      stopTimer();
+
+      if (showOverlay) {
+        setupScreen.classList.add("show");
+      }
+    }
+
+    setupPlayBtn.addEventListener("click", startGameFromSetup);
+    listenBtn.addEventListener("click", listenAgain);
+    pauseBtn.addEventListener("click", togglePause);
+    restartBtn.addEventListener("click", restartGame);
+    skipBtn.addEventListener("click", skipQuestion);
+    teamCountInput.addEventListener("input", clampTeamCount);
+
+    window.addEventListener("resize", fitAllText);
+
+    window.addEventListener("beforeunload", () => {
+      if ("speechSynthesis" in window) speechSynthesis.cancel();
+    });
+
+    initPreview(true);
+  </script>
+</body>
+</html>
